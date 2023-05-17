@@ -15,7 +15,7 @@ import Spinner from "react-bootstrap/Spinner";
 const columns = [
   {
     name: "Product Name",
-    selector: (row) => row._id.product_name,
+    selector: (row) => row._id?.product_name,
     sortable: true,
   },
   {
