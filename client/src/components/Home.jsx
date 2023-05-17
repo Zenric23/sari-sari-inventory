@@ -29,6 +29,7 @@ const Home = () => {
   const [statData, setStatData] = useState([]);
   const [prods, setProds] = useState([])
   const [isLoading, setIsLoading] = useState(false);
+  const [tableLoading, setTableLoading] = useState(false)
 
   useEffect(() => {
     const getStat = async () => {
@@ -42,11 +43,14 @@ const Home = () => {
       }
     };
     const getProd = async () => {
+      setTableLoading(true)
       try {
         const res = await apiReq.get('/stat/product-qty')
+        setTableLoading(false)
         setProds(res.data)
       } catch (error) {
         console.log(error)
+        setTableLoading(false)
       }
     }
     getProd()
@@ -75,16 +79,20 @@ const Home = () => {
           </Col>
         )}
       </Row>
-      <div className="container p-4 border border-2 mt-5">
-        <DataTable
-          columns={columns}
-          data={prods}
-          pagination
-          title="Products"
-          progressPending={isLoading}
-          progressComponent={<Spinner animation="border" variant="primary" />}
-        />
-      </div>
+      {
+        !tableLoading && (
+          <div className="container p-4 border border-2 mt-5">
+            <DataTable
+              columns={columns}
+              data={prods}
+              pagination
+              title="Products"
+              progressPending={isLoading}
+              progressComponent={<Spinner animation="border" variant="primary" />}
+            />
+          </div>
+        )
+      }
       {isLoading && (
         <div className="mx-auto" style={{ width: "fit-content" }}>
           <Spinner
