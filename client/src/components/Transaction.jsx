@@ -1,8 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -11,24 +7,6 @@ import { Button, Col, Spinner } from "react-bootstrap";
 import PopModal from "./PopModal";
 import apiReq from "../apiReq";
 
-const data = [
-  {
-    product: "Beetlejuice",
-    type: "Sales",
-    qty: 4,
-    price: 40,
-    amount: 160,
-    date: "17-jul-2023",
-  },
-  {
-    product: "Ghostbusters",
-    type: "Sales",
-    qty: 4,
-    price: 40,
-    amount: 160,
-    date: "17-jul-2023",
-  },
-];
 
 const Transaction = () => {
   const [products, setProducts] = useState([]);
