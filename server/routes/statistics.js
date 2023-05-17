@@ -78,7 +78,7 @@ router.get('/', async (req, res)=> {
             },
           ])
 
-          const totalInventory = totalInventoryRaw[0].purchaseQty[0].total - totalInventoryRaw[0].salesQty[0].total 
+          const totalInventory = totalInventoryRaw[0]?.purchaseQty[0]?.total - totalInventoryRaw[0]?.salesQty[0]?.total || 0
 
           res.status(200).json({stat, totalInventory})
     } catch (error) { 

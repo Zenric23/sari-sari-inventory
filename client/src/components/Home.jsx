@@ -64,18 +64,18 @@ const Home = () => {
           <>
             <Col lg={3} className="border border-3 text-center p-3">
               <h4 className="fw-bold">TOTAL SALES</h4>
-              <span className="fs-4">₱{item.totalSales[0].total}</span>
+              <span className="fs-4">₱{item.totalSales[0]?.total || 0}</span>
             </Col>
             <Col lg={3} className="border border-3 text-center p-3">
               <h4 className="fw-bold">TOTAL PURCHASED</h4>
-              <span className="fs-4">₱{item.totalPurchase[0].total}</span>
+              <span className="fs-4">₱{item.totalPurchase[0]?.total || 0}</span>
             </Col>
           </>
         ))}
-        {statData?.totalInventory && (
+        {statData?.totalInventory >= 0 && (
           <Col lg={3} className="border border-3 text-center p-3">
             <h4 className="fw-bold">INVENTORY QTY</h4>
-            <span className="fs-4">{statData && statData.totalInventory}</span>
+            <span className="fs-4">{statData && statData?.totalInventory || 0}</span>
           </Col>
         )}
       </Row>
@@ -87,8 +87,8 @@ const Home = () => {
               data={prods}
               pagination
               title="Products"
-              progressPending={isLoading}
-              progressComponent={<Spinner animation="border" variant="primary" />}
+              // progressPending={isLoading}
+              // progressComponent={<Spinner animation="border" variant="primary" />}
             />
           </div>
         )

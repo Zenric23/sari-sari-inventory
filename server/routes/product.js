@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Product = require('../model/Product')
+const Transaction = require('../model/Transaction')
 
 
 router.get('/', async (req, res)=> {
@@ -32,7 +33,7 @@ router.put('/:id', async (req, res)=> {
             { $set: req.body },
             { new: true } 
         )
-        res.status(200).json(updatedProduct)
+        res.status(200).json(updatedProduct) 
     } catch (error) {
         console.log(error)
     }
@@ -42,6 +43,7 @@ router.put('/:id', async (req, res)=> {
 router.delete('/:id', async (req, res)=> {
     try {
         await Product.findByIdAndDelete(req.params.id)
+        await Transaction.deleteMany({product_id: req.params.id})
         res.status(200).json('product deleted.')
     } catch (error) {
         console.log(error)
