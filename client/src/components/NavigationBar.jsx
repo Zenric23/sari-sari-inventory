@@ -5,6 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 import { Outlet, NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
+
+  const handleLogout = () => {
+    localStorage.removeItem('userDetails')
+    window.location.replace('/login')
+  }
+
   return (
     <>
       <Navbar bg="secondary" expand="lg">
@@ -17,7 +23,8 @@ const NavigationBar = () => {
             <Nav className="ms-auto">
               <span
                 className="text-white"
-                style={{ textDecoration: "underline" }}
+                style={{ textDecoration: "underline", cursor: 'pointer' }}
+                onClick={handleLogout}
               >
                 Logout
               </span>
